@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class Company extends Model
 {
     use HasFactory;
 
-    protected $table = "users";
+    protected $table = "companies";
 
     protected $primaryKey = "id";
 
-    protected $fillable = ['name', 'company_id'];
+    protected $fillable = ['name'];
 
-    public function company() {
-        return $this->belongsTo(Compny::class);
+    public function users() {
+
+        return $this->hasMany(User::class);
     }
 }

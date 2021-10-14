@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::resource('users', UserController::class)->except('show');
+Route::resource('companies', CompanyController::class);
+
 
 Route::get('/', function () {
     return view('welcome');
