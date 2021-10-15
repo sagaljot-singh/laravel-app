@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -54,10 +55,48 @@ class CompanyController extends Controller
      */
     public function show()
     {
-        $companies = Company::all();
+        //
+    }
 
-        return view('companies.index', compact('companies'));
-    } 
+
+
+    public function showUsers(Request $request) {
+        $users = User::where('company_id', null)->get();
+        $companyId = $request->id;
+
+        return view('companies.addUser', compact('users', 'companyId'));
+
+    }
+
+    public function addUsers(Request $request) {
+        
+        $input = $request->all();
+
+        $input['id'] = $request->input('user_ids');
+        $companyId = $request->company_id;
+
+        if (!empty($input['id'])) {
+            foreach($input['id'] as $id) {
+                $id = (int)$id;
+                $user = User::find($id);
+                $user->company_id = (int)$companyId;
+                $user->save();
+            }
+        }
+
+        
+
+        
+
+    
+        
+    
+        return redirect()->route('companies.index')
+                        ->with('success','User added successfully');
+
+    }
+
+ 
      
     /**
      * Show the form for editing the specified resource.

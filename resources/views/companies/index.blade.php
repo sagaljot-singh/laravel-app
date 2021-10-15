@@ -32,7 +32,7 @@
             <td>{{ $company->name }}</td>
             
             <form action="{{ route('companies.destroy',$company->id) }}" method="POST">
-                <td><a class="btn btn-warning" href="{{ route('companies.show',$company->id) }}">Add User</a></td>
+                <td><a class="btn btn-warning" href="{{ url('/show/users/'.$company->id) }}">Add User</a></td>
                 <td>
                     <a class="btn btn-primary" href="{{ route('companies.edit',$company->id) }}">Edit</a>
                 </td>

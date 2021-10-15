@@ -6,8 +6,7 @@
 </head>
 <body>
   
-<div class="container" style="text-align: center;
-    margin-top: 10%;">
+<div class="container" style="margin-top: 10%;">
     @yield('content')
 </div>
    

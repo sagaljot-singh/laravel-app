@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +16,10 @@ use App\Http\Controllers\CompanyController;
 */
 
 Route::resource('users', UserController::class)->except('show');
-Route::resource('companies', CompanyController::class);
+Route::resource('companies', CompanyController::class)->except('show');
+
+Route::get('/show/users/{id}', [CompanyController::class, 'showUsers' ]);
+Route::post('/add/users', [CompanyController::class, 'addUsers' ]);
 
 
 Route::get('/', function () {
